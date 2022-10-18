@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <string>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -23,6 +24,7 @@
 #include <mutex>
 #include <sys/wait.h>
 #include <cassert>
+#include <time.h>       /* time */
 #define PORT 5030
 #define MENSAJE_MAXIMO  256
 #define MAX_CLIENTS 10

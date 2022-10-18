@@ -32,12 +32,10 @@ void get_request(struct request* req, int s)
 // envía a traves de todos los sockets la request.
 void broadcast(vector<vector<int>> &sockets, struct request* req)
 {
-    cout << sockets.size() << endl;
     for (size_t i = 0; i < sockets.size(); i++)
     {
         for (size_t j = 0; j < sockets.size(); j++)
         {
-            cout << sockets[i][j] << endl;
             int s = send(sockets[i][j], req, strlen(req->msg) + 10, 0);
             if (s == -1) {
                 perror("enviando");
@@ -75,9 +73,11 @@ static int nonblockingsocket(int s)
 
 void connection_handler(int socket_desc){
     
-    while(1)
+    while(1){
         if(leer_de_socket(socket_desc) == -1)
             break;
+    }
+        
 }
 
 int leer_de_socket(int s) {
@@ -91,6 +91,6 @@ int leer_de_socket(int s) {
     	return 0;
     }
     str[n] = '\0'; /* Agregar caracter de fin de cadena a lo recibido. */
-    printf("%s", s,str);
+    printf("%s", str);
     return 0;
 }

@@ -8,22 +8,14 @@ using namespace std;
 
 bool revisarCantidadJugadores(vector<vector<int>> &matrix, vector<int> &socketsListos, int socketNuevo){
     socketsListos.push_back(socketNuevo);
-    cout << socketNuevo << endl;
     if(socketsListos.size() == 9){
         int numero = 0;
         for (size_t i = 0; i < 3 ; i++)
         {
             for (size_t j = 0; j < 3; j++)
             {
-                matrix[i].push_back(socketsListos[numero]);
+                matrix[i][j] = socketsListos[numero];
                 numero++;
-            }
-        }
-        for (size_t i = 0; i < 3 ; i++)
-        {
-            for (size_t j = 0; j < 3; j++)
-            {
-                matrix[i][j];
             }
         }
         return true;
@@ -79,8 +71,7 @@ int main(void)
         {
             request req;
             strcpy(req.msg, "Bienvenidos al juego de tu vida");
-            strcpy(req.type, "SALUDO");
-            cout << "nashe"<< endl;
+            strcpy(req.type, "SALUDO \n");
             broadcast(matrix,&req);
         }
     }

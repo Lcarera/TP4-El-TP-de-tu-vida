@@ -1,6 +1,6 @@
 #include "header.h"
 
-int main(void)
+int main(int argc, char const *argv[])
 {
     int socket_fd;
     int len;
@@ -9,7 +9,8 @@ int main(void)
     struct in_addr addr;
     char buf[MENSAJE_MAXIMO];
     vector<thread> threads;
-
+    bool vivo = atoi(argv[1]) % 2 == 0;
+    cout << vivo << endl;
     if ((socket_fd = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
         perror("creando socket");
         exit(1);
@@ -33,16 +34,6 @@ int main(void)
 	{
 		threads[i].join();
 	}
-    do{
-        printf("> ");
-        fgets(buf, MENSAJE_MAXIMO, stdin);
-        int s = send(socket_fd, buf, strlen(buf), 0);
-        if (s == -1) {
-            perror("enviando");
-            exit(1);
-        }
-
-    }while(!feof(stdin));
 
     /* Cerrar el socket. */
     close(socket_fd);
